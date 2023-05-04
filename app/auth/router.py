@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Body
-
+import random
 from .schemas import *
 from .auth_handler import *
 from .auth_bearer import JWTBearer
@@ -16,9 +16,10 @@ async def send_password_bot(chat_id, password):
     responce = requests.post(URL + "/sendMessage", data={"chat_id": chat_id, "text": f"Код для входа в autoclick: {password}", "parse_mode": "Markdown"})
     return responce
 
-async def check_user(data: UserLoginSchema):
+def check_user(data: UserLoginSchema):
     for user in users:
-        if user.telegramId == data.telegramId and user.password == data.password:
+        print(user)
+        if int(user["telegramId"]) == data.telegramID and user["password"] == data.password:
             return True
     return False
 
@@ -26,15 +27,16 @@ async def check_user(data: UserLoginSchema):
 @router.post("/smscode", tags=["jwt"])
 async def smscode(phone: str):
     phone = jsonable_encoder({phone})
-    print(phone)
-    user = await db.users.find_one({"phone": phone})
+    user = await db.users.find_one({"phone": phone[0]})
     if not user:
         return 'No user'
     else:
-        return user
-        password = 123
-        await send_password_bot(user.telegramId, password)
-        users.append([user.telegramId, password])
+        password = random.randint(1000, 9999)
+        await send_password_bot(user["telegramId"], password)
+        users.append({"telegramId": user["telegramId"],
+                       "password": password
+                    })
+        return 'User found'
 
 @router.post("/jsonwebtokensms", tags=["jwt"])
 async def user_login(user: UserLoginSchema = Body(...)):
