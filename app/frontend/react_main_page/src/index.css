@@ -6,8 +6,47 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+table {
+  table-layout:fixed;
+}
 code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.head {
+  /* margin-top: 50px;
+  margin-left: 80%; */
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.headimage {
+  /* margin-left: 80%; */
+  width: 300px; 
+  height: 300px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.authcomponent{
+  border: 10px;
+  font-size: 14px;
+  text-align: center;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.authinput{
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  background: #ffffff !important;
+  outline: none;
+  height: 35px;
+  width: 400px;
+  margin: 3px;
+  font-size: 14px;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
