@@ -7,12 +7,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <table>
-        <tr>
-            <td><AuthComponent /></td>
-            <td><HeadComponent /></td>
-        </tr>
-        </table>
+            <HeadComponent />
+            <AuthComponent />
       </div>
     )
   }
